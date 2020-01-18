@@ -114,20 +114,22 @@ export default function Result({ location }) {
 
         <RepoList>
           <ul>
-            {repos.map(repo => (
-              <RepoItem key={repo.id}>
-                <Link to={repo.html_url}>
-                  <Name style={{ color: '#ac53f2' }}>{repo.name}</Name>
-                </Link>
-                <ProfileText style={{ color: '#000000' }}>
-                  {repo.description}
-                </ProfileText>
-                <ProfileText style={{ marginTop: 10 }}>
-                  <MdStarBorder size={30} />
-                  {repo.stargazers_count}
-                </ProfileText>
-              </RepoItem>
-            ))}
+            {repos
+              .sort((a, b) => b.stargazers_count - a.stargazers_count)
+              .map(repo => (
+                <RepoItem key={repo.id}>
+                  <Link to={repo.html_url}>
+                    <Name style={{ color: '#ac53f2' }}>{repo.name}</Name>
+                  </Link>
+                  <ProfileText style={{ color: '#000000' }}>
+                    {repo.description}
+                  </ProfileText>
+                  <ProfileText style={{ marginTop: 10 }}>
+                    <MdStarBorder size={30} />
+                    {repo.stargazers_count}
+                  </ProfileText>
+                </RepoItem>
+              ))}
           </ul>
         </RepoList>
       </Container>
