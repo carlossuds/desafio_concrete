@@ -76,11 +76,12 @@ export default function Result({ location }) {
         </Link>
 
         <Input
+          data-testid="input"
           type="text"
           value={user}
           onChange={e => setUser(e.target.value)}
         />
-        <Button onClick={handleClick}>
+        <Button data-testid="button" onClick={handleClick}>
           <MdSearch color="white" size={30} style={{ marginTop: 5 }} />
         </Button>
       </Head>
