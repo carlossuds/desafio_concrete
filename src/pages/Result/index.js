@@ -119,7 +119,7 @@ export default function Result({ location }) {
               .sort((a, b) => b.stargazers_count - a.stargazers_count)
               .map(repo => (
                 <RepoItem key={repo.id}>
-                  <a href={repo.html_url}>
+                  <a onClick={() => (window.location.href = repo.html_url)}>
                     <Name style={{ color: '#ac53f2' }}>{repo.name}</Name>
                   </a>
                   <ProfileText style={{ color: '#000000' }}>
