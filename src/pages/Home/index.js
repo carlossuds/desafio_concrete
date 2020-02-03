@@ -8,7 +8,7 @@ import {
   TitleDiv,
   Text1,
   Text2,
-  InputDiv,
+  InputForm,
   Input,
   Button,
 } from './styles';
@@ -16,14 +16,16 @@ import {
 export default function Home() {
   const [user, setUser] = useState('');
 
-  async function handleClick() {
+  async function handleClick(e) {
+    e.preventDefault();
+
     try {
       const responseUser = await api.get(`/users/${user}`);
 
       const responseRepos = await api.get(`/users/${user}/repos`);
 
       history.push({
-        pathname: '/result',
+        pathname: `/result/${user}`,
         state: {
           user: responseUser.data,
           repos: responseRepos.data,
@@ -45,17 +47,17 @@ export default function Home() {
         <Text1>Github</Text1>
         <Text2>Search</Text2>
       </TitleDiv>
-      <InputDiv>
+      <InputForm onSubmit={handleClick}>
         <Input
           data-testid="input"
           type="text"
           value={user}
           onChange={e => setUser(e.target.value)}
         />
-        <Button data-testid="button" onClick={handleClick}>
+        <Button data-testid="button" type="submit" onClick={handleClick}>
           <MdSearch color="white" size={30} style={{ marginTop: 5 }} />
         </Button>
-      </InputDiv>
+      </InputForm>
     </Container>
   );
 }

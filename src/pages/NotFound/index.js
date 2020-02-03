@@ -11,6 +11,7 @@ import {
   Head,
   Text1,
   Text2,
+  InputForm,
   Input,
   Button,
   Message,
@@ -23,14 +24,16 @@ export default function NotFound({ location }) {
     setUser(location.state.user.login);
   }, [location.state.user.login]);
 
-  async function handleClick() {
+  async function handleClick(e) {
+    e.preventDefault();
+
     try {
       const responseUser = await api.get(`/users/${user}`);
 
       const responseRepos = await api.get(`/users/${user}/repos`);
 
       history.push({
-        pathname: '/result',
+        pathname: `/result/${user}`,
         state: {
           user: responseUser.data,
           repos: responseRepos.data,
@@ -53,16 +56,17 @@ export default function NotFound({ location }) {
           <Text1>Github</Text1>
           <Text2>Search</Text2>
         </Link>
-
-        <Input
-          data-testid="input"
-          type="text"
-          value={user}
-          onChange={e => setUser(e.target.value)}
-        />
-        <Button data-testid="button" onClick={handleClick}>
-          <MdSearch color="white" size={30} style={{ marginTop: 5 }} />
-        </Button>
+        <InputForm style={{ flex: 1 }} onSubmit={handleClick}>
+          <Input
+            data-testid="input"
+            type="text"
+            value={user}
+            onChange={e => setUser(e.target.value)}
+          />
+          <Button data-testid="button" type="submit" onClick={handleClick}>
+            <MdSearch color="white" size={30} style={{ marginTop: 5 }} />
+          </Button>
+        </InputForm>
       </Head>
       <Container>
         <Message>User not found :(</Message>

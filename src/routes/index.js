@@ -9,8 +9,8 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={Home} />
-      <Route path="/result" exact component={Result} />
-      <Route path="/notfound" exact component={NotFound} />
+      <Route path="/result" component={Result} />
+      <Route path="/notfound" component={NotFound} />
     </Switch>
   );
 }

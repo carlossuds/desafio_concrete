@@ -27,7 +27,7 @@ export const Text2 = styled.span`
   font-style: italic;
 `;
 
-export const InputDiv = styled.div`
+export const InputForm = styled.form`
   display: flex;
   flex-direction: row;
   width: 100%;

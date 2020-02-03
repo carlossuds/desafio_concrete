@@ -34,6 +34,15 @@ export const Text2 = styled.span`
   font-style: italic;
 `;
 
+export const InputForm = styled.form`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+`;
+
 export const Input = styled.input`
   width: 40%;
   height: 30px;
